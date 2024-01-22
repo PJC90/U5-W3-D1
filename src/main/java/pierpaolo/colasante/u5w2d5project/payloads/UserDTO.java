@@ -17,6 +17,9 @@ public record UserDTO(
         String lastName,
         @Email(message = "L'indirizzo inserito non è un indirizzo valido")
         @NotNull(message = "La mail è un campo obbligatorio!")
-        String email
+        String email,
+        @NotEmpty(message = "La password è obbligatoria")
+        @Size(min = 5, max = 30, message = "La password deve avere minimo 5 caratteri, massimo 30")
+        String password
 ) {
 }

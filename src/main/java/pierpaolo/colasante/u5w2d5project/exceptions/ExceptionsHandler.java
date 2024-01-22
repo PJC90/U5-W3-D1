@@ -9,6 +9,7 @@ import pierpaolo.colasante.u5w2d5project.payloads.ErrorDTOwithList;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestControllerAdvice
@@ -21,6 +22,13 @@ public class ExceptionsHandler {
             errMessage = ex.getErrorList().stream().map(err -> err.getDefaultMessage()).toList();
         return new ErrorDTOwithList(ex.getMessage(), LocalDateTime.now(), errMessage);
     }
+
+    @ExceptionHandler(BadRequestException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED) //401
+    public ErrorDTO handleUnauthorized(UnauthorizedException e){
+        return new ErrorDTO(e.getMessage(), LocalDateTime.now());
+    }
+
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)   //404 Not Found
     public ErrorDTO HandleNotFound(NotFoundException ex){

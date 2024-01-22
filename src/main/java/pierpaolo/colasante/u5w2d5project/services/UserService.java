@@ -29,11 +29,16 @@ public class UserService {
         newUser.setLastName(body.lastName());
         newUser.setUsername(body.username());
         newUser.setEmail(body.email());
+        newUser.setPassword(body.password());
         newUser.setAvatar("https://ui-avatars.com/api/?name=" + body.name() + "+" + body.lastName());
         return userDAO.save(newUser);
     }
     public User findById(long id){
         return userDAO.findById(id).orElseThrow(()->new NotFoundException(id));
+    }
+
+    public User findByEmail(String email) throws NotFoundException{
+        return userDAO.findByEmail(email).orElseThrow(()->new NotFoundException("Utente con email " + email + " non trovata!!!"));
     }
     public User findByIdAndUpdate(long id, User body){
         User found = this.findById(id);
@@ -42,6 +47,7 @@ public class UserService {
         found.setUsername(body.getUsername());
         found.setEmail(body.getEmail());
         found.setAvatar(body.getAvatar());
+        found.setPassword(body.getPassword());
         return userDAO.save(found);
     }
     public void findByIdAndDelete(int id){
