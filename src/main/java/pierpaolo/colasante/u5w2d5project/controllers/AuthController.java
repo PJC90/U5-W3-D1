@@ -36,7 +36,7 @@ public class AuthController {
             throw new BadRequestException("Ci sono errori nel payload!"); // L'eccezione arriverà agli error handlers tra i quali c'è quello che manderà la risposta con status code 400
         } else {
             User newUser = usersService.save(newUserPayload);
-
+//potrei mandare la mail di conferma di avvenuta registrazione
             return new UserResponseDTO(newUser.getId());
         }
     }
