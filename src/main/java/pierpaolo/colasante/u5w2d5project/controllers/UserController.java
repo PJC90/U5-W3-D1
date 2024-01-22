@@ -22,16 +22,16 @@ public class UserController {
     private UserService userService;
     @GetMapping
     public List<User> getUser(){return userService.getUser();}
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public UserResponseDTO saveUser(@RequestBody @Validated UserDTO body, BindingResult validation){
-        if(validation.hasErrors()){
-            throw new BadRequestException(validation.getAllErrors());
-        }else {
-            User newUser = userService.save(body);
-            return new UserResponseDTO(newUser.getId());
-        }
-    }
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public UserResponseDTO saveUser(@RequestBody @Validated UserDTO body, BindingResult validation){
+//        if(validation.hasErrors()){
+//            throw new BadRequestException(validation.getAllErrors());
+//        }else {
+//            User newUser = userService.save(body);
+//            return new UserResponseDTO(newUser.getId());
+//        }
+//    }
     @GetMapping("/{id}")
     public User findById(@PathVariable int id){return userService.findById(id);}
     @PutMapping("/{id}")
