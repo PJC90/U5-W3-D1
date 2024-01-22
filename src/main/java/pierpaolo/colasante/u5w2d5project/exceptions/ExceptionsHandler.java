@@ -23,7 +23,7 @@ public class ExceptionsHandler {
         return new ErrorDTOwithList(ex.getMessage(), LocalDateTime.now(), errMessage);
     }
 
-    @ExceptionHandler(BadRequestException.class)
+    @ExceptionHandler(UnauthorizedException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED) //401
     public ErrorDTO handleUnauthorized(UnauthorizedException e){
         return new ErrorDTO(e.getMessage(), LocalDateTime.now());

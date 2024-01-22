@@ -13,7 +13,7 @@ public class AuthService {
     private UserService userService;
     @Autowired
     private JWTtools jwTtools;
-    @Autowired
+
     public String authenticateUser(UserLoginDTO body){
         // 1. Verifichiamo che l'email dell'utente sia nel db
         User user = userService.findByEmail(body.email());
